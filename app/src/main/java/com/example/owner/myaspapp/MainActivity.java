@@ -1,11 +1,13 @@
 package com.example.owner.myaspapp;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,22 @@ public class MainActivity extends AppCompatActivity {
             public String getpPoperties(){
                 return properties;
             }
+        }
+
+        protected void popup(){
+            //popup window decleration
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.custom_toast,
+                    (ViewGroup) findViewById(R.id.custom_toast_container));
+
+            TextView text = (TextView)layout.findViewById(R.id.text);
+            text.setText("Welcome ranking111 and barvaserman!");
+
+            Toast toast = new Toast(getApplicationContext());
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setView(layout);
+            toast.show();
         }
 
         @Override
@@ -73,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                     clickedObj.getpPoperties(),
                             Toast.LENGTH_LONG).show();
                 }});
+            popup();
 
         }
 
@@ -111,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
             View view = convertView;
             if(convertView == null)
                 view = inflater.inflate(R.layout.row, null);
-            
+
+
 
            // TextView text1 = (TextView)view.findViewById(R.id.text1);
             TextView text1 = (TextView)view.findViewById(R.id.text1);
