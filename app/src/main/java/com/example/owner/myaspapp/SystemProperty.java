@@ -1,32 +1,33 @@
 package com.example.owner.myaspapp;
 
-public class SystemProperty{
+public class SystemProperty {
     private String propertyName;
     private String property;
 
     /**
-     *
-     * @param key - property name as key
+     * @param key   - property name as key
      * @param value - property value as value
      */
-    SystemProperty(String key, String value){
+    SystemProperty(String key, String value) {
         propertyName = key;
         property = value;
     }
 
     /**
      * the method return the property name
+     *
      * @return property name
      */
-    public String getPropertyName(){
+    public String getPropertyName() {
         return propertyName;
     }
 
     /**
-     * the methos returns the property value
+     * the method returns the property value
+     *
      * @returnthe property value
      */
-    public String getpPopertyValue(){
+    public String getProperty() {
         return property;
     }
 }
