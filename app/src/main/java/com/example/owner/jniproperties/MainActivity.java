@@ -1,4 +1,4 @@
-package com.example.owner.myaspapp;
+package com.example.owner.jniproperties;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,18 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Properties;
-
 
 public class MainActivity extends AppCompatActivity {
+    //loading the library
+    static {
+        System.loadLibrary("native-lib");
+    }
+
     private final String KINGS_TOAST_TEXT = "Welcome ranking111 and barvaserman!";
 
     /**
      * this method shows a toast message
      */
     protected void popup() {
-        //popup window decleration
+        // popup window
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.kings_toast,
                 (ViewGroup) findViewById(R.id.custom_toast_container));
@@ -50,19 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.properties_listview);
         //Init ArrayList of MyObject
-        ArrayList<SystemProperty> myPropertyList = new ArrayList<>();
-
-        //get System Properties
-        Properties properties = System.getProperties();
-        Enumeration<String> propEnum =
-                (Enumeration<String>) properties.propertyNames();
-        // the loop sets for every property name it's property value.
-        while (propEnum.hasMoreElements()) {
-            String propName = propEnum.nextElement();
-            String prop = System.getProperty(propName);
-            SystemProperty nexProp = new SystemProperty(propName, prop);
-            myPropertyList.add(nexProp);
-        }
+        ArrayList<SystemProperty> myPropertyList = getPropertiesArrayList();
 
         PropertyAdapter myAdapter = new PropertyAdapter(this, myPropertyList);
         listView.setAdapter(myAdapter);
@@ -79,14 +69,21 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent,
                                     View view, int position, long id) {
                 SystemProperty clickedObj = (SystemProperty) parent.getItemAtPosition(position);
-                Toast.makeText(MainActivity.this,
-                        clickedObj.getPropertyName() + ":\n" +
-                                clickedObj.getProperty(),
-                        Toast.LENGTH_LONG).show();
+                //make toast longer
+                for (int i = 0; i < 2; i++) {
+                    Toast.makeText(MainActivity.this,
+                            clickedObj.getPropertyName() + ":\n" +
+                                    clickedObj.getProperty(),
+                            Toast.LENGTH_LONG).show();
+                }
+
             }
         });
         popup();
     }
+
+    // Get system properties using JNI
+    public native ArrayList<SystemProperty> getPropertiesArrayList();
 }
 
 

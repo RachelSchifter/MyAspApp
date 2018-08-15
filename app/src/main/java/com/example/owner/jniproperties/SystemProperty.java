@@ -1,4 +1,4 @@
-package com.example.owner.myaspapp;
+package com.example.owner.jniproperties;
 
 public class SystemProperty {
     private String propertyName;

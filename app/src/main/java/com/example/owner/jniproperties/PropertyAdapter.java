@@ -1,4 +1,4 @@
-package com.example.owner.myaspapp;
+package com.example.owner.jniproperties;
 
 import android.app.Activity;
 import android.content.Context;

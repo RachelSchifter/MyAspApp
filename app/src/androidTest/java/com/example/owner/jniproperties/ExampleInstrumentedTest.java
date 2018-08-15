@@ -1,4 +1,4 @@
-package com.example.owner.myaspapp;
+package com.example.owner.jniproperties;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.owner.myaspapp", appContext.getPackageName());
+        assertEquals("com.example.owner.jniproperties", appContext.getPackageName());
     }
 }
